@@ -11,7 +11,8 @@ OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 
 TARGET = $(BINDIR)/ci
 
-$(TARGET): $(OBJS) 
+$(TARGET): $(OBJS)
+	@mkdir -p $(BINDIR)
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEADERS)
