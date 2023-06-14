@@ -1,0 +1,7 @@
+echo "Running caesars cipher test..."
+echo
+
+rm bin/ci
+make
+./bin/ci -cc tests/cc.txt
+
