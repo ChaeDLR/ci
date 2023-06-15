@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAXSTRLEN 1 << 7
+#define MAXSTRLEN 0xffff
 
 char *
 cc_encrypt (char *text, size_t key)

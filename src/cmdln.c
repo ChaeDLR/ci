@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define CAESARSCIPHER "-cc"
+#define CAESARSCIPHER "cc"
 
 int
 main (int argc, char **argv)
@@ -18,7 +18,7 @@ main (int argc, char **argv)
 
   if (strncmp (CAESARSCIPHER, ci_option, 3) == 0)
     {
-      char *ciphertext = cc_encrypt ("test", 1);
+      char *ciphertext = cc_encrypt (argv[2], 1);
       printf ("%s\n", ciphertext);
       free (ciphertext);
     }
