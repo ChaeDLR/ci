@@ -3,9 +3,7 @@
 
 #define MAXSTRLEN 0xffff
 
-char *
-cc_encrypt (char *text, size_t key)
-{
+char *cc_encrypt (char *text, size_t key) {
   const char *TEXTKEY
       = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .,?!";
 
@@ -17,26 +15,24 @@ cc_encrypt (char *text, size_t key)
 
   size_t shiftloc;
   int i, j;
-  for (i = 0, j = 0; i < txtlen; ++i)
-    {
-      shiftloc = i;
+  for (i = 0, j = 0; i < txtlen; ++i) {
+    shiftloc = i;
     look:
-      if (text[i] == TEXTKEY[j])
-        {
-          shiftloc = j + key;
-          j = 0;
-          while (shiftloc > tklen)
-            {
-              shiftloc -= tklen;
-            }
-        }
-      else if (j < tklen)
-        {
-          ++j;
-          goto look;
-        }
-      ci_text[i] = TEXTKEY[shiftloc];
+    if (text[i] == TEXTKEY[j]) {
+      shiftloc = j + key;
+      j = 0;
+      while (shiftloc > tklen) shiftloc -= tklen;
     }
+    else if (j < tklen) {
+      ++j;
+      goto look;
+    }
+    ci_text[i] = TEXTKEY[shiftloc];
+  }
 
   return ci_text;
+}
+
+char *cc_decrypt (char *text, size_t key) {
+  return "placeholder";
 }
