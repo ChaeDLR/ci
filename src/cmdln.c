@@ -11,9 +11,9 @@ int main (int argc, char **argv) {
     exit (EXIT_FAILURE);
   }
 
-  char *ci_option = argv[1];
+  char *ci_selection = argv[1];
 
-  if (strncmp (CAESARSCIPHER, ci_option, 3) == 0) {
+  if (strncmp (CAESARSCIPHER, ci_selection, 3) == 0) {
     char *endptr;
     int uin_key = strtol (argv[3], &endptr, 10);
 
@@ -22,8 +22,11 @@ int main (int argc, char **argv) {
       exit (EXIT_FAILURE);
     }
     char *ciphertext = cc_encrypt (argv[2], uin_key);
-    printf ("%s\n", ciphertext);
+    char *decipheredtext = cc_decrypt (argv[2], uin_key);
+    printf ("Encrypted: %s\n", ciphertext);
+    printf ("Decrypted: %s\n", decipheredtext);
     free (ciphertext);
+    free (decipheredtext);
   }
   else {
     perror ("Invalid option.");
