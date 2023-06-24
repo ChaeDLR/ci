@@ -14,7 +14,15 @@ int main (int argc, char **argv)
             perror ("Invalid number of arguments ");
             exit (EXIT_FAILURE);
         } else if (strncmp ("--help", argv[1], 7) == 0) {
-            printf ("Ci help page.\n");
+            FILE *helpfd = fopen ("misc/help.bin", "rb");
+            fseek (helpfd, 0, SEEK_END);
+            long filelen = ftell (helpfd);
+            fseek (helpfd, 0, SEEK_SET);
+            char *helptext = malloc (sizeof (char) * filelen);
+            fread (helptext, sizeof (char), filelen, helpfd);
+            printf ("%s", helptext);
+            free (helptext);
+            fclose (helpfd);
             exit (EXIT_SUCCESS);
         }
     }
