@@ -1,0 +1,2 @@
+usage:
+  ci cc [text: str] [key: uint]
